@@ -198,6 +198,9 @@ Base = React.createClass
                   course: now
               if later.length > 0
                 @setState
+                  courseLater: later
+              else
+                @setState
                   courseLater: null
             else
               @setState
