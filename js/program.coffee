@@ -1,5 +1,5 @@
 if window.location.protocol is not "https:"
-  window.location.href = window.location.href.replace /^http:/, /https:/
+  window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
 
 R = React.DOM # quality of life aliasing
 
