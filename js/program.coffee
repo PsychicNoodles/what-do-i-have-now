@@ -170,7 +170,7 @@ Base = React.createClass
       data: { rouxRequest: "<request><key>#{localStorage.getItem 'key'}</key><action>selectStudentCalendar</action><ID>#{localStorage.getItem 'id'}</ID><academicyear>#{moment().year()}</academicyear></request>" }
       timeout: 1000
       success: (res) =>
-        #try
+        try
           err = $(res).find "error"
           if err.length != 0
             @signOut()
@@ -207,13 +207,13 @@ Base = React.createClass
                 course:
                   full: "nothing!"
                   short: "no classes today"
-        #catch err
-        # @setState
-        #   courseError:
-        #     msg: "either an internal Dalton server problem or parsing error"
-        #     err: "Could not find period in \"selectStudentCalendar\" call"
-        #     extra: err
-        # console.err err
+        catch err
+         @setState
+           courseError:
+             msg: "either an internal Dalton server problem or parsing error"
+             err: "Could not find period in \"selectStudentCalendar\" call"
+             extra: err
+         console.err err
   render: ->
     R.div null,
       Navbar loggedIn: @state.loggedIn, signInFn: @signIn, signOutFn: @signOut, loginError: @state.loginError
