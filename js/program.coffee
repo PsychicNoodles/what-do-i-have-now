@@ -127,7 +127,7 @@ Body = React.createFactory React.createClass
           else undefined
         R.div className: "row",
           R.div className: "col-md-1 col-md-offset-4",
-            R.button className: "btn btn-default", style: (if not @props.course then { "display": "none" } else undefined), onClick: @props.updateFn, "Refresh"
+            R.button className: "btn btn-default", onClick: @props.updateFn, "Refresh"
           R.div className: "col-md-3",
             R.div className: "input-group",
               R.span className: "input-group-addon",
