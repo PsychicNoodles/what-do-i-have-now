@@ -27,7 +27,6 @@ findNow = (periods) ->
           later:
             parseCourse $(c), parseTime $(c) for c in periods[(i + 1)..-1]
     else
-      console.log "earlier"
       return {} =
         now:
           null
@@ -77,6 +76,20 @@ DevEmail = React.createFactory React.createClass # an email link builder
                body=Error: #{@props.error}\nStatus: #{@props.status}\nKey: #{@props.credKey}\nID: #{@props.credId}\nExtra: #{@props.extra}", "the developer"
 
 Body = React.createFactory React.createClass
+  getInitialState: ->
+    auto: false
+    frequency: 10
+    interval: null
+  toggleAuto: (evt) ->
+    @setState
+      auto: evt.target.checked
+    if evt.target.checked
+      @setState
+        interval: setInterval(@props.updateFn, @state.frequency * 1000 * 60)
+    else
+      clearInterval @state.interval
+  componentWillUnmount: ->
+    clearInterval @state.interval
   render: ->
     R.div className: "container",
       R.div className: "jumbotron",
@@ -112,7 +125,17 @@ Body = React.createFactory React.createClass
           else if @props.course.teacher and @props.course.room
             "with #{@props.course.teacher} in #{@props.course.room}"
           else undefined
-        R.button className: "btn btn-default", style: (if not @props.course then { "display": "none" } else undefined), onClick: @props.updateFn, "Refresh"
+        if @props.courseLater
+          R.div className: "row",
+            R.div className: "col-md-1 col-md-offset-4",
+              R.button className: "btn btn-default", style: (if not @props.course then { "display": "none" } else undefined), onClick: @props.updateFn, "Refresh"
+            R.div className: "col-md-3",
+              R.div className: "input-group",
+                R.span className: "input-group-addon",
+                  R.input type: "checkbox", onClick: @toggleAuto
+                R.span className: "input-group-addon", "Every"
+                R.input className: "form-control", type: "text", value: @state.frequency, onChange: (evt) => if !isNaN evt.target.value then @setState { frequency: evt.target.value }
+                R.span className: "input-group-addon", "minutes"
       if @props.courseLater
         R.div className: "col-md-6 col-md-offset-3",
           R.h4 className: "text-center", "And later..."
@@ -160,10 +183,14 @@ Base = React.createClass
     localStorage.removeItem "id"
     @setState
       loggedIn: false
+      course: null
+      courseError: null
+      courseLater: null
   update: ->
     @setState
       course: null
       courseError: null
+      courseLater: null
     $.ajax
       url: roux
       type: "POST"
@@ -173,7 +200,6 @@ Base = React.createClass
         try
           err = $(res).find "error"
           if err.length != 0
-            console.log err
             @signOut()
           else
             periods = $(res).find "period"
@@ -229,5 +255,5 @@ $ ->
     React.createElement Base, null
     $("#bind")[0]
   )
-  if window.location.protocol != "https:"
-    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
+#  if window.location.protocol != "https:"
+#    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
