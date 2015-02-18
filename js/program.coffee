@@ -125,17 +125,16 @@ Body = React.createFactory React.createClass
           else if @props.course.teacher and @props.course.room
             "with #{@props.course.teacher} in #{@props.course.room}"
           else undefined
-        if @props.courseLater
-          R.div className: "row",
-            R.div className: "col-md-1 col-md-offset-4",
-              R.button className: "btn btn-default", style: (if not @props.course then { "display": "none" } else undefined), onClick: @props.updateFn, "Refresh"
-            R.div className: "col-md-3",
-              R.div className: "input-group",
-                R.span className: "input-group-addon",
-                  R.input type: "checkbox", onClick: @toggleAuto
-                R.span className: "input-group-addon", "Every"
-                R.input className: "form-control", type: "text", value: @state.frequency, onChange: (evt) => if !isNaN evt.target.value then @setState { frequency: evt.target.value }
-                R.span className: "input-group-addon", "minutes"
+        R.div className: "row",
+          R.div className: "col-md-1 col-md-offset-4",
+            R.button className: "btn btn-default", style: (if not @props.course then { "display": "none" } else undefined), onClick: @props.updateFn, "Refresh"
+          R.div className: "col-md-3",
+            R.div className: "input-group",
+              R.span className: "input-group-addon",
+                R.input type: "checkbox", onClick: @toggleAuto
+              R.span className: "input-group-addon", "Every"
+              R.input className: "form-control", type: "text", value: @state.frequency, onChange: (evt) => if !isNaN evt.target.value then @setState { frequency: evt.target.value }
+              R.span className: "input-group-addon", "minutes"
       if @props.courseLater
         R.div className: "col-md-6 col-md-offset-3",
           R.h4 className: "text-center", "And later..."
