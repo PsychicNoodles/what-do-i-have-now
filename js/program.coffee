@@ -1,3 +1,6 @@
+if window.location.protocol is not "https:"
+  window.location.href = window.location.href.replace /^http:/, /https:/
+
 R = React.DOM # quality of life aliasing
 
 roux = "https://schedules.dalton.org/roux/index.php" # all requests use this URL
@@ -173,6 +176,7 @@ Base = React.createClass
         try
           err = $(res).find "error"
           if err.length != 0
+            console.log err
             @signOut()
           else
             periods = $(res).find "period"
