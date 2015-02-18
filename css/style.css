@@ -1,0 +1,35 @@
+body
+{
+	padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+#loading
+{
+	-webkit-animation: rotation 2s infinite linear;
+	-moz-animation: rotation 2s infinite linear;
+	font-size: 30px;
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+@-webkit-keyframes rotation {
+    from { -webkit-transform: rotate(0deg); }
+    to   { -webkit-transform: rotate(359deg); }
+}
+
+@-moz-keyframes rotation {
+    from { -moz-transform: rotate(0deg); }
+    to   { -moz-transform: rotate(359deg); }
+}
+
+.jumbotron
+{
+	text-align: center;
+}
+
+#login-feedback
+{
+	margin-right: 5px;
+}
