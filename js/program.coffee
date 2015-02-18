@@ -7,7 +7,7 @@ parseCourse = (xml, times) ->
   short: xml.find('section shortname:first').html()
   teacher: xml.find('instructor name:first').html()
   room: xml.find('location').html()
-  time: times[0..1].join ":"
+  time: times[0..1]
   id: xml.find("section:first").attr "id"
 
 parseTime = (xml) ->
@@ -142,7 +142,7 @@ Body = React.createFactory React.createClass
           R.ul className: "list-group",
             for course, i in @props.courseLater
               R.li className: "list-group-item", key: i,
-                R.span className: "badge", course.time
+                R.span className: "badge", moment().hour(course.time[0]).minutes(course.time[1]).format("h:mm A")
                 R.h4 className: "list-group-item-heading", course.full
                 R.p className: "list-group-item-text", "with #{course.teacher} in #{course.room}"
 
