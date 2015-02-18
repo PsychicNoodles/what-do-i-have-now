@@ -1,6 +1,3 @@
-if window.location.protocol is not "https:"
-  window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
-
 R = React.DOM # quality of life aliasing
 
 roux = "https://schedules.dalton.org/roux/index.php" # all requests use this URL
@@ -232,3 +229,5 @@ $ ->
     React.createElement Base, null
     $("#bind")[0]
   )
+  if window.location.protocol != "https:"
+    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
