@@ -31,7 +31,7 @@ findNow = (periods) ->
         now:
           null
         later:
-          parseCourse $(c), parseTime $(c) for c in periods[(i + 1)..-1]
+          parseCourse $(c), parseTime $(c) for c in periods[i..-1]
   now:
     null
   later:
@@ -255,5 +255,5 @@ $ ->
     React.createElement Base, null
     $("#bind")[0]
   )
-#  if window.location.protocol != "https:"
-#    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
+  if window.location.protocol != "https:"
+    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
