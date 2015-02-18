@@ -242,8 +242,16 @@ Base = React.createClass
          console.err err
   render: ->
     R.div null,
+      R.div className: "github-fork-ribbon-wrapper left",
+        R.div className: "github-fork-ribbon",
+          R.a href: "https://github.com/PsychicNoodles/what-do-i-have-now/tree/gh-pages", "Fork me on GitHub"
       Navbar loggedIn: @state.loggedIn, signInFn: @signIn, signOutFn: @signOut, loginError: @state.loginError
       Body loggedIn: @state.loggedIn, course: @state.course, courseError: @state.courseError, courseLater: @state.courseLater, updateFn: @update
+      R.footer className: "footer",
+        R.div className: "container",
+          R.div className: "row",
+            R.div className: "col-md-6",
+              R.p className: "text-muted", "Created by Mattori Birnbaum"
       #R.div null, # debugging
       # for k, v of @state
       #   R.div null, "#{k} = " + (if v is not null and v.keys then ("#{k1} = #{v2}" for k1, v1 of v) else v)
@@ -254,5 +262,5 @@ $ ->
     React.createElement Base, null
     $("#bind")[0]
   )
-  if window.location.protocol != "https:"
-    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
+#  if window.location.protocol != "https:"
+#    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
