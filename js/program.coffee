@@ -35,7 +35,7 @@ findNow = (periods) ->
   now:
     null
   later:
-    parseCourse $(c), parseTime $(c) for c in periods
+    null
 
 Navbar = React.createFactory React.createClass # the navbar portion
   getInitialState: ->
@@ -222,7 +222,7 @@ Base = React.createClass
               else
                 @setState
                   course: now
-              if later.length > 0
+              if later is not null and later.length > 0
                 @setState
                   courseLater: later
               else
