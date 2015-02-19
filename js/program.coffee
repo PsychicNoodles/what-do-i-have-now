@@ -206,7 +206,7 @@ Base = React.createClass
             if periods.length != 0
               {now, later} = findNow periods
               if now is null
-                if moment().isAfter(moment().hour(12).minutes(35)) and moment().isBefore(moment().hour(13).minutes(14)) # interval
+                if moment().isAfter(moment().hour(12).minutes(35)) and moment().isBefore(moment().hour(13).minutes(35)) # interval
                   @setState
                     course:
                       full: "Interval"
