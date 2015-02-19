@@ -32,10 +32,11 @@ findNow = (periods) ->
           null
         later:
           parseCourse $(c), parseTime $(c) for c in periods[i..-1]
-  now:
-    null
-  later:
-    null
+  return {} =
+    now:
+      null
+    later:
+      null
 
 Navbar = React.createFactory React.createClass # the navbar portion
   getInitialState: ->
@@ -222,7 +223,7 @@ Base = React.createClass
               else
                 @setState
                   course: now
-              if later is not null and later.length > 0
+              if later isnt null and later.length > 0
                 @setState
                   courseLater: later
               else
@@ -262,5 +263,5 @@ $ ->
     React.createElement Base, null
     $("#bind")[0]
   )
-#  if window.location.protocol != "https:"
-#    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
+  if window.location.protocol != "https:"
+    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
