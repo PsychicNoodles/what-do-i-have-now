@@ -251,8 +251,11 @@ Base = React.createClass
       R.footer className: "footer",
         R.div className: "container",
           R.div className: "row",
-            R.div className: "col-md-6",
-              R.p className: "text-muted", "Created by Mattori Birnbaum"
+            R.div className: "col-md-12",
+              R.p className: "text-muted",
+                "Created by Mattori Birnbaum. Please send any bugs or requests to "
+                R.a href: "mailto:mattori.birnbaum@gmail.com", "mattori.birnbaum@gmail.com"
+                "."
       #R.div null, # debugging
       # for k, v of @state
       #   R.div null, "#{k} = " + (if v is not null and v.keys then ("#{k1} = #{v2}" for k1, v1 of v) else v)
@@ -263,5 +266,5 @@ $ ->
     React.createElement Base, null
     $("#bind")[0]
   )
-  if window.location.protocol != "https:"
-    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
+#  if window.location.protocol != "https:"
+#    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
